@@ -29,5 +29,26 @@ int main() {
     } while (k < casas_rainha);
     printf("\n");
 
+     // Simulação do movimento do Cavalo (usando for e while e do-while aninhados)
+    printf("Movimento do Cavalo:\n");
+    int casas_baixo = 2;
+    int casas_esquerda = 1;
+
+    for (int i = 0; i < 1; i++) { // Loop externo usando for)
+        int baixo = 0;
+        int esquerda = 0;
+        while (baixo < casas_baixo) { // loop interno do movimento para baixo usando while)
+            printf("Baixo\n");
+            baixo++;
+        }
+        do {                          // loop interno do movimento para a esquerda usando do-while)
+            printf("Esquerda\n");
+            esquerda++;
+        } while (esquerda < casas_esquerda);           
+                       
+    }
+    printf("\n");
+
+
     return 0;
 }
