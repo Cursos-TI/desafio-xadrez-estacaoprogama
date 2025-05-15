@@ -1,54 +1,82 @@
 #include <stdio.h>
 
+// Função recursiva para o movimento da Torre
+void moverTorre(int casas) {
+    if (casas > 0) {
+        printf("Direita\n");
+        moverTorre(casas - 1); // Chamada recursiva com uma casa a menos
+    }
+}
+
+// Função recursiva para o movimento do Bispo
+void moverBispo(int casas) {
+    if (casas > 0) {
+        printf("Cima, Direita\n");
+        moverBispo(casas - 1); // Chamada recursiva com uma casa a menos
+    }
+}
+
+// Função recursiva para o movimento da Rainha
+void moverRainha(int casas) {
+    if (casas > 0) {
+        printf("Esquerda\n");
+        moverRainha(casas - 1); // Chamada recursiva com uma casa a menos
+    }
+}
+
 int main() {
-    // Simulação do movimento da Torre (usando for)
+    // Movimento da Torre usando recursividade
     printf("Movimento da Torre:\n\n");
     int casas_torre = 5;
-    for (int i = 0; i < casas_torre; i++) {
-        printf("Direita\n");
-    }
+    moverTorre(casas_torre);
     printf("\n");
 
-    // Simulação do movimento do Bispo (usando while)
+    // Movimento do Bispo usando recursividade e loops aninhados for)
     printf("Movimento do Bispo:\n\n");
-    int casas_bispo = 5;
-    int j = 0;
-    while (j < casas_bispo) {
-        printf("Cima, Direita\n");
-        j++;
+    int casas_bispo_vertical = 5;
+    int casas_bispo_horizontal = 5;
+
+    // Loop externo para o movimento vertical
+    for (int i = 0; i < casas_bispo_vertical; i++) {
+        // Loop interno para o movimento horizontal
+        for (int j = 0; j < casas_bispo_horizontal; j++) {
+            printf("Cima,Direita\n");
+        }
+        break;
     }
     printf("\n");
 
-    // Simulação do movimento da Rainha (usando do-while)
+    // Movimento da Rainha usando recurividade
     printf("Movimento da Rainha:\n\n");
     int casas_rainha = 8;
-    int k = 0;
-    do {
-        printf("Esquerda\n");
-        k++;
-    } while (k < casas_rainha);
+    moverRainha(casas_rainha);
     printf("\n");
 
-     // Simulação do movimento do Cavalo (usando for e while e do-while aninhados)
+    // Movimento do Cavalo usando loops aninhados com continue e break
     printf("Movimento do Cavalo:\n");
-    int casas_baixo = 2;
-    int casas_esquerda = 1;
+    int movimento_cavalo = 0;
+    int total_movimentos_cavalo = 3; // Simular alguns movimentos em "L"
 
-    for (int i = 0; i < 1; i++) { // Loop externo usando for)
-        int baixo = 0;
-        int esquerda = 0;
-        while (baixo < casas_baixo) { // loop interno do movimento para baixo usando while)
-            printf("Baixo\n");
-            baixo++;
+    for (int cima = 0; cima < total_movimentos_cavalo; cima++) {
+        for (int direita = 0; direita < 2; direita++) { // Controla o movimento para cima de no máximo 2
+            printf("Cima\n");
+            if (direita == 1) { // Após duas casas para cima, move para a direita
+                for (int lado = 0; lado < 1; lado ++) { // Controla o movimento, sempre 1 para a direita 
+                    printf("Direita\n");
+                    movimento_cavalo++;
+                    if (movimento_cavalo == total_movimentos_cavalo) {
+                        break; // Interrompe os loops externos quando atingir o número desejado de movimentos
+                    }
+                }
+            }
         }
-        do {                          // loop interno do movimento para a esquerda usando do-while)
-            printf("Esquerda\n");
-            esquerda++;
-        } while (esquerda < casas_esquerda);           
-                       
+        if (movimento_cavalo == total_movimentos_cavalo) {
+            break; // Interrompe o loop externo se o número desejado de movimentos foi atingido
+        }
     }
     printf("\n");
-
 
     return 0;
 }
+
+
